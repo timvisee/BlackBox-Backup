@@ -1,5 +1,6 @@
 package com.timvisee.blackbox.volume.filesystem;
 
+import com.timvisee.blackbox.util.PathUtils;
 import com.timvisee.blackbox.volume.VolumeAdapter;
 import com.timvisee.blackbox.volume.VolumeFile;
 import com.timvisee.blackbox.volume.VolumeType;
@@ -60,7 +61,7 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
 
     @Override
     public String getFileSeparator() {
-        return File.pathSeparator;
+        return File.separator;
     }
 
     @Override
@@ -126,23 +127,15 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
     }
 
     /**
-     * Get the relative path from a base path and absolute path.
+     * Get the relative path from a base path and target path.
      *
      * @param base The base path.
-     * @param absolute The absolute path.
+     * @param target The target path.
      *
      * @return The relative path.
      */
-    private String getRelativePath(File base, File absolute) {
-        //return base.toURI().relativize(path.toURI()).getPath();
-
-        // Get the base and absolute path
-        Path pathBase = Paths.get(base.getAbsolutePath());
-        Path pathAbsolute = Paths.get(absolute.getAbsolutePath());
-
-        // Determine and return the relative path
-        Path pathRelative = pathBase.relativize(pathAbsolute);
-        return pathRelative.toString();
+    private String getRelativePath(File base, File target) {
+        return PathUtils.getRelativePath(target.getAbsolutePath(), base.getAbsolutePath(), getFileSeparator());
     }
 
     @Override
