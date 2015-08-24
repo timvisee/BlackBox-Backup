@@ -206,7 +206,7 @@ public class VolumeManager {
         // Make sure the file exists
         if(!f.exists()) {
             if(showMsg)
-                System.out.println("Failed to load volumes data, file doesn't exist!");
+                System.out.println("Unable to load volumes data, the data file doesn't exist!");
             return false;
         }
 
