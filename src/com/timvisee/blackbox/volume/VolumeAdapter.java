@@ -50,6 +50,15 @@ public abstract class VolumeAdapter {
      */
     public abstract VolumeFile getRoot();
 
+    /**
+     * Get the name of a file or directory.
+     *
+     * @param file The volume file.
+     *
+     * @return The name.
+     */
+    public abstract String getName(VolumeFile file);
+
     public abstract List<VolumeFile> list(VolumeFile dir);
 
     /**

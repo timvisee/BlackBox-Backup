@@ -87,11 +87,26 @@ public class Core {
 
     // TODO: Remove after debugging!
     public static void test() {
-        // TODO: Some test code
         System.out.println("\n\nTEST CODE:");
         Volume testVolume = Core.volumeManager.getVolumes().get(0);
         System.out.println("Contents in " + testVolume.getName() + "'s root:");
-        for(VolumeFile f : testVolume.getRoot().list())
-            System.out.println(" - " + f.getPath());
+        listDir(testVolume.getRoot(), 0);
+    }
+
+    // TODO: Remove after debugging!
+    public static void listDir(VolumeFile dir, int level) {
+        // Build the prefix
+        StringBuilder prefix = new StringBuilder();
+        for(int i = 0; i < level; i++)
+            prefix.append("  ");
+
+        //System.out.println("Contents of '" + dir.getPath() + "':");
+        for(VolumeFile f : dir.list()) {
+            boolean isDir = f.isDirectory();
+            System.out.println(prefix.toString() + " - " + f.getName() + (isDir ? ":" : ""));
+
+            if(isDir)
+                listDir(f, level + 1);
+        }
     }
 }

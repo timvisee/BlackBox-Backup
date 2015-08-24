@@ -67,6 +67,11 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
         return this.getFile("");
     }
 
+    @Override
+    public String getName(VolumeFile file) {
+        return getSystemFile(file).getName();
+    }
+
     /**
      * Get a volume file.
      *

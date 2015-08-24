@@ -71,6 +71,10 @@ public class VolumeFile {
         return this.path;
     }
 
+    public String getName() {
+        return this.adapter.getName(this);
+    }
+
     /**
      * Set the volume file path represented as a string.
      *
