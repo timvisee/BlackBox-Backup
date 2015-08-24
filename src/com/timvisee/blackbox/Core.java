@@ -1,6 +1,8 @@
 package com.timvisee.blackbox;
 
 import com.timvisee.blackbox.util.WindowUtils;
+import com.timvisee.blackbox.volume.Volume;
+import com.timvisee.blackbox.volume.VolumeFile;
 import com.timvisee.blackbox.volume.VolumeManager;
 
 import java.io.File;
@@ -44,6 +46,13 @@ public class Core {
         // Initialization succeed, show a status message with the initialization duration
         long duration = System.currentTimeMillis() - start;
         System.out.println("Initialized successfully, took " + String.valueOf(duration) + "ms. Cave Johnson here");
+
+        // TODO: Some test code
+        System.out.println("\n\nTEST CODE:");
+        Volume testVolume = Core.volumeManager.getVolumes().get(0);
+        System.out.println("Contents in " + testVolume.getName() + "'s root:");
+        for(VolumeFile f : testVolume.getRoot().list())
+            System.out.println(" - " + f.getPath());
     }
 
     /**

@@ -6,6 +6,8 @@ import com.timvisee.blackbox.volume.VolumeType;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,7 +115,7 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
         try {
             //noinspection ConstantConditions
             for(File entry : f.listFiles())
-                l.add(this.getFile(entry.getAbsolutePath()));
+                l.add(this.getFile(getRelativePath(getRootFile(), entry)));
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -121,6 +123,26 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
 
         // Return the list of files
         return l;
+    }
+
+    /**
+     * Get the relative path from a base path and absolute path.
+     *
+     * @param base The base path.
+     * @param absolute The absolute path.
+     *
+     * @return The relative path.
+     */
+    private String getRelativePath(File base, File absolute) {
+        //return base.toURI().relativize(path.toURI()).getPath();
+
+        // Get the base and absolute path
+        Path pathBase = Paths.get(base.getAbsolutePath());
+        Path pathAbsolute = Paths.get(absolute.getAbsolutePath());
+
+        // Determine and return the relative path
+        Path pathRelative = pathBase.relativize(pathAbsolute);
+        return pathRelative.toString();
     }
 
     @Override

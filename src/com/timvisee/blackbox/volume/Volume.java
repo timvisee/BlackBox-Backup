@@ -110,6 +110,15 @@ public class Volume {
 	}
 
     /**
+     * Get the volume root directory.
+     *
+     * @return Root directory.
+     */
+    public VolumeFile getRoot() {
+        return this.adapter.getRoot();
+    }
+
+    /**
      * Connect to the volume.
      *
      * @return True on success, false on failure.
