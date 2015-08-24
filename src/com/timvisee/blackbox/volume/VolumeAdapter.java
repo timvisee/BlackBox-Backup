@@ -3,6 +3,7 @@ package com.timvisee.blackbox.volume;
 import com.timvisee.blackbox.volume.filesystem.VolumeAdapterFilesystem;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 
+import java.io.File;
 import java.util.List;
 
 public abstract class VolumeAdapter {
@@ -50,6 +51,24 @@ public abstract class VolumeAdapter {
     public abstract VolumeFile getRoot();
 
     public abstract List<VolumeFile> list(VolumeFile dir);
+
+    /**
+     * Check whether a volume file is an existing file.
+     *
+     * @param file The volume file.
+     *
+     * @return True if the volume file is an existing file.
+     */
+    public abstract boolean isFile(VolumeFile file);
+
+    /**
+     * Check whether a volume file is an existing directory.
+     *
+     * @param dir The volume directory.
+     *
+     * @return True if the volume file is an existing directory.
+     */
+    public abstract boolean isDirectory(VolumeFile dir);
 
     /**
      * Load a volume adapter from a configuration section.

@@ -94,18 +94,6 @@ public class VolumeFile {
         return true;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-	
 	/**
 	 * Get a list of files and directories inside the current directory.
 	 * Note: The current file has to be a directory
@@ -120,25 +108,23 @@ public class VolumeFile {
 		
 		// List and return the files
 		return getAdapter().list(this);
-
-//        // Cast the volume to an FTP volume
-//        FTPVolume ftpVol = (FTPVolume) this.v;
-//
-//        // Get the volume connection
-//        FTPClient con = ftpVol.getConnection();
-//
-//        try {
-//            // Navigate to the proper directory
-//            con.changeDirectory(this.path);
-//
-//            // List all files and folders
-//            for(String entry : con.listNames())
-//                l.add(new VolumeFile(ftpVol, this.path, entry));
-//
-//        } catch (IllegalStateException | IOException | FTPIllegalReplyException | FTPException | FTPDataTransferException | FTPAbortedException | FTPListParseException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//        break;
 	}
+
+    /**
+     * Check whether this is an existing file.
+     *
+     * @return True if this is an existing file.
+     */
+    public boolean isFile() {
+        return getAdapter().isFile(this);
+    }
+
+    /**
+     * Check whether this is an existing directory.
+     *
+     * @return True if this is an existing directory.
+     */
+    public boolean isDirectory() {
+        return getAdapter().isDirectory(this);
+    }
 }

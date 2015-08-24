@@ -47,12 +47,9 @@ public class Core {
         long duration = System.currentTimeMillis() - start;
         System.out.println("Initialized successfully, took " + String.valueOf(duration) + "ms. Cave Johnson here");
 
-        // TODO: Some test code
-        System.out.println("\n\nTEST CODE:");
-        Volume testVolume = Core.volumeManager.getVolumes().get(0);
-        System.out.println("Contents in " + testVolume.getName() + "'s root:");
-        for(VolumeFile f : testVolume.getRoot().list())
-            System.out.println(" - " + f.getPath());
+        // Run the test method, remove this after debugging
+        // TODO: Remove after debugging!
+        test();
     }
 
     /**
@@ -86,5 +83,15 @@ public class Core {
 
         // Show a status message
         System.out.println("Application data directory created, took " + (System.currentTimeMillis() - start) + " ms.");
+    }
+
+    // TODO: Remove after debugging!
+    public static void test() {
+        // TODO: Some test code
+        System.out.println("\n\nTEST CODE:");
+        Volume testVolume = Core.volumeManager.getVolumes().get(0);
+        System.out.println("Contents in " + testVolume.getName() + "'s root:");
+        for(VolumeFile f : testVolume.getRoot().list())
+            System.out.println(" - " + f.getPath());
     }
 }

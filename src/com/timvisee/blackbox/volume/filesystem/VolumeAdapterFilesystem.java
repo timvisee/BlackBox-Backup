@@ -84,6 +84,28 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
     }
 
     /**
+     * Get the filesystem file from a volume file.
+     *
+     * @param path The volume file path.
+     *
+     * @return The filesystem file.
+     */
+    private File getSystemFile(String path) {
+        return new File(this.root, path);
+    }
+
+    /**
+     * Get the filesystem file from a volume file.
+     *
+     * @param file The volume file.
+     *
+     * @return The filesystem file.
+     */
+    private File getSystemFile(VolumeFile file) {
+        return getSystemFile(file.getPath());
+    }
+
+    /**
      * Get the root directory as a Java File.
      *
      * @return Volume root.
@@ -103,8 +125,8 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
         // Create a list to put the files in
         List<VolumeFile> l = new ArrayList<>();
 
-        // Get the file
-        File f = new File(this.root, dir.getPath());
+        // Get the system file
+        File f = getSystemFile(dir.getPath());
 
         // Ensure the file is a directory, and ensure the directory exists, otherwise return null
         if(!f.isDirectory())
@@ -122,6 +144,22 @@ public class VolumeAdapterFilesystem extends VolumeAdapter {
 
         // Return the list of files
         return l;
+    }
+
+    public boolean isFile(VolumeFile file) {
+        // Get the system file
+        File systemFile = getSystemFile(file);
+
+        // Check whether the file is a file, return the result
+        return systemFile.isFile();
+    }
+
+    public boolean isDirectory(VolumeFile dir) {
+        // Get the system file
+        File systemFile = getSystemFile(dir);
+
+        // Check whether the file is a directory, return the result
+        return systemFile.isDirectory();
     }
 
     /**
