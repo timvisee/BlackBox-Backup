@@ -159,8 +159,13 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
     @Override
     public boolean isConnected() {
-        // TODO: Check whether the FTP volume is connected.
-        return true;
+        // Make sure the connection instance is set
+        if(this.connection == null)
+            return false;
+
+        // Make sure the FTP volume is connected, return the results
+        // TODO: Should we also check if the connection is authenticated?
+        return this.connection.isConnected() && this.connection.isAuthenticated();
     }
 
     @Override
