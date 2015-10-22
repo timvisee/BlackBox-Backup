@@ -53,6 +53,51 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         this.root = root;
     }
 
+    /**
+     * Get the FTP host.
+     *
+     * @return Host.
+     */
+    public String getHost() {
+        return this.host;
+    }
+
+    /**
+     * Get the FTP host port.
+     *
+     * @return Host port.
+     */
+    public int getPort() {
+        return this.port;
+    }
+
+    /**
+     * Get the FTP user.
+     *
+     * @return User.
+     */
+    public String getUser() {
+        return this.user;
+    }
+
+    /**
+     * Get the FTP password.
+     *
+     * @return Password.
+     */
+    public String getPassword() {
+        return this.pass;
+    }
+
+    /**
+     * Get the FTP root path.
+     *
+     * @return Root path.
+     */
+    public String getRootPath() {
+        return this.root;
+    }
+
     @Override
     public VolumeType getVolumeType() {
         return VolumeType.FTP_VOLUME;
@@ -134,15 +179,6 @@ public class VolumeAdapterFTP extends VolumeAdapter {
      */
     private File getSystemFile(VolumeFile file) {
         return getSystemFile(file.getPath());
-    }
-
-    /**
-     * Get the root directory as a Java File.
-     *
-     * @return Volume root.
-     */
-    public File getRootFile() {
-        return this.root;
     }
 
     /**
