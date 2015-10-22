@@ -100,6 +100,15 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return this.root;
     }
 
+    /**
+     * Get the current FTP connection.
+     *
+     * @return FTP connection, or null if no connection is active.
+     */
+    public FTPClient getConnection() {
+        return this.connection;
+    }
+
     @Override
     public VolumeType getVolumeType() {
         return VolumeType.FTP_VOLUME;
