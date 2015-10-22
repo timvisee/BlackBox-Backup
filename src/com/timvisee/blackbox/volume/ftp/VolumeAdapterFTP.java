@@ -117,6 +117,9 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         // TODO: What should we do with this recon variable?
         boolean recon = false;
 
+        // TODO: Create connection
+        this.connection = new FTPClient();
+
         try {
             // Check whether a connection was made already
             if(this.connection.isConnected() && this.connection.isAuthenticated()) {
@@ -236,7 +239,8 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
         // Change the directory
         try {
-            this.connection.changeDirectory(dir.getPath());
+            // FIXME: Invalid path, use something like dir.getPath()
+            this.connection.changeDirectory("/" + dir.getPath());
 
         } catch(IOException | FTPIllegalReplyException | FTPException e) {
             // Show an error message, return null

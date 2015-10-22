@@ -46,7 +46,7 @@ public class Core {
 
         // Initialization succeed, show a status message with the initialization duration
         long duration = System.currentTimeMillis() - start;
-        System.out.println("Initialized successfully, took " + String.valueOf(duration) + "ms. Cave Johnson here");
+        System.out.println("Initialized successfully, took " + String.valueOf(duration) + "ms. Cave Johnson here!");
 
         // Run the test method, remove this after debugging
         // TODO: Remove after debugging!
@@ -112,7 +112,7 @@ public class Core {
         //System.out.println("Contents of '" + dir.getPath() + "':");
         for(VolumeFile f : dir.list()) {
             boolean isDir = f.isDirectory();
-            //System.out.println(prefix.toString() + " - " + f.getName() + (isDir ? ":" : ""));
+            System.out.println(prefix.toString() + " - " + f.getName() + (isDir ? ":" : ""));
 
             if(isDir)
                 folders++;

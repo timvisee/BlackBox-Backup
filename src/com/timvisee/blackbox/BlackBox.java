@@ -30,6 +30,9 @@ public class BlackBox {
         // Show the application name, version and copyright notice
         System.out.println(APP_NAME + " v" + APP_VERSION_NAME + " (" + APP_VERSION_CODE + ").\n" + APP_COPYRIGHT + "\n");
 
+		// Print the app data directory
+		System.out.println("App data directory: " + getDirectory().getAbsolutePath());
+
 		// Initialize the core
 		if(BlackBox.core == null)
 			BlackBox.core = new Core();
