@@ -5,9 +5,7 @@ import com.timvisee.blackbox.volume.VolumeAdapter;
 import com.timvisee.blackbox.volume.VolumeFile;
 import com.timvisee.blackbox.volume.VolumeType;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
-import it.sauronsoftware.ftp4j.FTPClient;
-import it.sauronsoftware.ftp4j.FTPException;
-import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
+import it.sauronsoftware.ftp4j.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -206,16 +204,6 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return this.getFile("");
     }
 
-
-
-
-
-    @Override
-    public String getName(VolumeFile file) {
-        // TODO: Is this correct?
-        return getSystemFile(file).getName();
-    }
-
     /**
      * Get a volume file.
      *
@@ -226,32 +214,11 @@ public class VolumeAdapterFTP extends VolumeAdapter {
     public VolumeFile getFile(String path) {
         try {
             return new VolumeFile(this, path);
+
         } catch(Exception e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    /**
-     * Get the filesystem file from a volume file.
-     *
-     * @param path The volume file path.
-     *
-     * @return The filesystem file.
-     */
-    private File getSystemFile(String path) {
-        return new File(this.root, path);
-    }
-
-    /**
-     * Get the filesystem file from a volume file.
-     *
-     * @param file The volume file.
-     *
-     * @return The filesystem file.
-     */
-    private File getSystemFile(VolumeFile file) {
-        return getSystemFile(file.getPath());
     }
 
     /**
@@ -265,26 +232,84 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         // Create a list to put the files in
         List<VolumeFile> l = new ArrayList<>();
 
-        // Get the system file
-        File f = getSystemFile(dir.getPath());
+        // // Get the system file
+        // File f = getSystemFile(dir.getPath());
 
-        // Ensure the file is a directory, and ensure the directory exists, otherwise return null
-        if(!f.isDirectory())
+        // Change the directory
+        try {
+            this.connection.changeDirectory(dir.getPath());
+
+        } catch(IOException | FTPIllegalReplyException | FTPException e) {
+            // Show an error message, return null
+            e.printStackTrace();
             return null;
+        }
+
+        // TODO: Should we check whether we're in a directory, return null otherwise. Or is this already done by the changeDirectory method?
 
         // List and process the files and directories
         try {
-            //noinspection ConstantConditions
-            for(File entry : f.listFiles())
-                l.add(this.getFile(getRelativePath(getRootFile(), entry)));
+            // Get the list of FTP files
+            String[] list = this.connection.listNames();
 
-        } catch(Exception e) {
+            // Loop through the list of files and add them to the list
+            for(String entry : list)
+                // TODO: Use a relative path here, from the root!
+                l.add(this.getFile(dir.getPath() + "/" + entry));
+
+        } catch(IllegalStateException | IOException | FTPIllegalReplyException | FTPException | FTPDataTransferException | FTPAbortedException | FTPListParseException e) {
             e.printStackTrace();
         }
 
         // Return the list of files
         return l;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public String getName(VolumeFile file) {
+        // TODO: Is this correct?
+        return getSystemFile(file).getName();
+    }
+
+    /*
+    /**
+     *
+     * Get the FTP file from a volume file.
+     *
+     * @param path The volume file path.
+     *
+     * @return The FTP file.
+     * /
+    private FTPFile getSystemFile(String path) {
+        return new File(this.root, path);
+    }
+    */
+
+    /*
+    /**
+     * Get the filesystem file from a volume file.
+     *
+     * @param file The volume file.
+     *
+     * @return The filesystem file.
+     * /
+    private File getSystemFile(VolumeFile file) {
+        return getSystemFile(file.getPath());
+    }
+    */
 
     public boolean isFile(VolumeFile file) {
         // Get the system file
