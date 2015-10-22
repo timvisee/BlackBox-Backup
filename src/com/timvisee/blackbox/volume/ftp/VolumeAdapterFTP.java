@@ -265,6 +265,18 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return l;
     }
 
+    /**
+     * Get the relative path from a base path and target path.
+     *
+     * @param base The base path (absolute).
+     * @param target The target path (absolute).
+     *
+     * @return The relative path.
+     */
+    private String getRelativePath(String base, String target) {
+        return PathUtils.getRelativePath(base, target, getFileSeparator());
+    }
+
 
 
 
@@ -311,7 +323,7 @@ public class VolumeAdapterFTP extends VolumeAdapter {
     }
     */
 
-    public boolean isFile(VolumeFile file) {
+    /*public boolean isFile(VolumeFile file) {
         // Get the system file
         File systemFile = getSystemFile(file);
 
@@ -325,19 +337,7 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
         // Check whether the file is a directory, return the result
         return systemFile.isDirectory();
-    }
-
-    /**
-     * Get the relative path from a base path and target path.
-     *
-     * @param base The base path.
-     * @param target The target path.
-     *
-     * @return The relative path.
-     */
-    private String getRelativePath(File base, File target) {
-        return PathUtils.getRelativePath(target.getAbsolutePath(), base.getAbsolutePath(), getFileSeparator());
-    }
+    }*/
 
     // TODO: Create this!
     @Override
