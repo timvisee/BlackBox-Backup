@@ -170,8 +170,21 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
     @Override
     public boolean disconnect() {
-        // TODO: Disconnect from the FTP volume.
-        return true;
+        // Make sure a connection instance is set
+        if(this.connection == null)
+            return true;
+
+        // Try to disconnect
+        try {
+            // Disconnect, return the result if succeed
+            this.connection.disconnect(true);
+            return true;
+
+        } catch(IllegalStateException | IOException | FTPIllegalReplyException | FTPException e) {
+            // Failed to disconnect, print the stack trace and return the result
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
