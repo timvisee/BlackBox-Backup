@@ -6,8 +6,11 @@ import com.timvisee.blackbox.volume.VolumeFile;
 import com.timvisee.blackbox.volume.VolumeType;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import it.sauronsoftware.ftp4j.FTPClient;
+import it.sauronsoftware.ftp4j.FTPException;
+import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,8 +108,53 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
     @Override
     public boolean connect() {
-        // TODO: Connect to the FTP volume.
-        return true;
+        // TODO: Should we set the connection instance somewhere before?
+        // TODO: What should we do with this recon variable?
+        boolean recon = false;
+
+        try {
+            // Check whether a connection was made already
+            if(this.connection.isConnected() && this.connection.isAuthenticated()) {
+                // Check whether we should reconnect, if not, return true
+                if(!recon)
+                    return true;
+                else
+                    this.connection.disconnect(true);
+            }
+
+        } catch (IllegalStateException | IOException | FTPIllegalReplyException | FTPException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            // Reconnect to the server
+            if(recon || !this.connection.isConnected()) {
+                // Reinitialize the connection
+                this.connection = new FTPClient();
+
+                // Connect to the server
+                if(this.port <= 0)
+                    this.connection.connect(this.host);
+                else
+                    this.connection.connect(this.host, this.port);
+            }
+
+            // Login onto the server if we're not authenticated already
+            if(!this.connection.isAuthenticated()) {
+                // Login onto the server
+                this.connection.login(this.user, this.pass);
+
+                // Set the proper root directory
+                this.connection.changeDirectory(this.root);
+            }
+
+            // Return true if the connection was successful
+            return (this.connection.isConnected() && this.connection.isAuthenticated());
+
+        } catch(FTPException | IllegalStateException | IOException | FTPIllegalReplyException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override
