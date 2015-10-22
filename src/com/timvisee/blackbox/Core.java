@@ -6,6 +6,7 @@ import com.timvisee.blackbox.volume.VolumeFile;
 import com.timvisee.blackbox.volume.VolumeManager;
 
 import java.io.File;
+import java.util.Random;
 
 public class Core {
 
@@ -85,13 +86,21 @@ public class Core {
         System.out.println("Application data directory created, took " + (System.currentTimeMillis() - start) + " ms.");
     }
 
+
+
+
+
     // TODO: Remove after debugging!
     public static void test() {
         System.out.println("\n\nTEST CODE:");
         Volume testVolume = Core.volumeManager.getVolumes().get(0);
         System.out.println("Contents in " + testVolume.getName() + "'s root:");
         listDir(testVolume.getRoot(), 0);
+        System.out.println("END RESULTS: Files: " + files + "   /// Folders: " + folders);
     }
+
+    public static int files = 0;
+    public static int folders = 0;
 
     // TODO: Remove after debugging!
     public static void listDir(VolumeFile dir, int level) {
@@ -103,10 +112,19 @@ public class Core {
         //System.out.println("Contents of '" + dir.getPath() + "':");
         for(VolumeFile f : dir.list()) {
             boolean isDir = f.isDirectory();
-            System.out.println(prefix.toString() + " - " + f.getName() + (isDir ? ":" : ""));
+            //System.out.println(prefix.toString() + " - " + f.getName() + (isDir ? ":" : ""));
 
             if(isDir)
+                folders++;
+            else
+                files++;
+
+            if(isDir) {
                 listDir(f, level + 1);
+
+                if((new Random()).nextInt(10000) == 0)
+                    System.out.println("Files: " + files + "   /// Folders: " + folders);
+            }
         }
     }
 }
