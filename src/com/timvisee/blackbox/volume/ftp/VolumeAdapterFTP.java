@@ -240,7 +240,7 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         // Change the directory
         try {
             // FIXME: Invalid path, use something like dir.getPath()
-            this.connection.changeDirectory("/" + dir.getPath());
+            this.connection.changeDirectory(getRootPath() + "/" + dir.getPath());
 
         } catch(IOException | FTPIllegalReplyException | FTPException e) {
             // Show an error message, return null
