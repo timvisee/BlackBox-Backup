@@ -1,6 +1,7 @@
 package com.timvisee.blackbox.volume;
 
 import com.timvisee.blackbox.volume.filesystem.VolumeAdapterFilesystem;
+import com.timvisee.blackbox.volume.ftp.VolumeAdapterFTP;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 
 import java.io.File;
@@ -116,6 +117,9 @@ public abstract class VolumeAdapter {
         switch(type) {
         case FILESYSTEM_VOLUME:
             return new VolumeAdapterFilesystem(dataSection);
+
+        case FTP_VOLUME:
+            return new VolumeAdapterFTP(dataSection);
 
         default:
             // Unable to load/parse volume, return null
