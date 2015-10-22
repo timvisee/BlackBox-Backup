@@ -294,6 +294,44 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return true;
     }
 
+    // TODO: Create this!
+    @Override
+    public boolean loadFromConfig(ConfigurationSection c) {
+        /* // Get the basic volume properties
+        int uid = c.getInt("uid", -1);
+        boolean enabled = c.getBoolean("enabled", true);
+        String name = c.getString("name", "Unnamed Volume");*/
+
+        // Load the host parameters
+        String host = c.getString("host");
+        int port = c.getInt("port", -1);
+
+        // Load the user credential parameters
+        String user = c.getString("user");
+        String pass = c.getString("pass");
+
+        // Load the directory parameters
+        String root = c.getString("root");
+
+        // Make sure the parameters are valid
+        if(host == null || port == -1 || user == null || pass == null || root == null)
+            return false;
+
+        // TODO: Validate the path! (Whether it exists, and so on)
+
+        // TODO: Validate the loaded root directory!
+
+        // Set the parameters
+        this.host = host;
+        this.port = port;
+        this.user = user;
+        this.pass = pass;
+        this.root = root;
+
+        // Return the result
+        return true;
+    }
+
 
 
 
@@ -355,26 +393,4 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         // Check whether the file is a directory, return the result
         return systemFile.isDirectory();
     }*/
-
-    // TODO: Create this!
-    @Override
-    public boolean loadFromConfig(ConfigurationSection c) {
-        /* // Get the basic volume properties
-        int uid = c.getInt("uid", -1);
-        boolean enabled = c.getBoolean("enabled", true);
-        String name = c.getString("name", "Unnamed Volume");*/
-
-        // Load the volume root, and make sure it's valid
-        String rootPath = c.getString("root", "");
-        if(rootPath.trim().length() == 0)
-            return false;
-
-        // TODO: Validate the path! (Whether it exists, and so on)
-
-        // TODO: Validate the loaded root directory!
-
-        // Parse and set the root directory
-        this.root = new File(rootPath);
-        return true;
-    }
 }
