@@ -7,7 +7,6 @@ import com.timvisee.blackbox.volume.VolumeType;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import it.sauronsoftware.ftp4j.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -336,19 +335,22 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
 
 
-
-
-
-
-
-
-
-
-
     @Override
     public String getName(VolumeFile file) {
-        // TODO: Is this correct?
-        return getSystemFile(file).getName();
+        // Get the path
+        String path = file.getPath();
+
+        // Get and return the bit after the last separator
+        return path.substring(path.lastIndexOf(getFileSeparator()));
+    }
+
+    public boolean isFile(VolumeFile file) {
+        // Return true if this name contains a period
+        return getName(file).contains(".");
+    }
+
+    public boolean isDirectory(VolumeFile dir) {
+        return !isFile(dir);
     }
 
     /*
@@ -377,20 +379,4 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return getSystemFile(file.getPath());
     }
     */
-
-    /*public boolean isFile(VolumeFile file) {
-        // Get the system file
-        File systemFile = getSystemFile(file);
-
-        // Check whether the file is a file, return the result
-        return systemFile.isFile();
-    }
-
-    public boolean isDirectory(VolumeFile dir) {
-        // Get the system file
-        File systemFile = getSystemFile(dir);
-
-        // Check whether the file is a directory, return the result
-        return systemFile.isDirectory();
-    }*/
 }
