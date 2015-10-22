@@ -29,7 +29,6 @@ public class VolumeAdapterFTP extends VolumeAdapter {
     /** FTP connection instance. */
     private FTPClient connection;
 
-    // TODO: Create this constructor!
     /**
      * Constructor.
      * Note: This constructor doesn't initialize the volume adapter. The .load() method should be executed afterwards.
@@ -198,16 +197,15 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return this.getFile("");
     }
 
+
+
+
+
     @Override
     public String getName(VolumeFile file) {
         // TODO: Is this correct?
         return getSystemFile(file).getName();
     }
-
-
-
-
-
 
     /**
      * Get a volume file.
@@ -307,6 +305,7 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return PathUtils.getRelativePath(target.getAbsolutePath(), base.getAbsolutePath(), getFileSeparator());
     }
 
+    // TODO: Create this!
     @Override
     public boolean loadFromConfig(ConfigurationSection c) {
         /* // Get the basic volume properties
