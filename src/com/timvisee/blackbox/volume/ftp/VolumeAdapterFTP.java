@@ -277,6 +277,23 @@ public class VolumeAdapterFTP extends VolumeAdapter {
         return PathUtils.getRelativePath(base, target, getFileSeparator());
     }
 
+    @Override
+    public boolean saveToConfig(ConfigurationSection c) {
+        // Set the host parameters
+        c.set("host", this.host);
+        c.set("port", this.port);
+
+        // Set the credential parameters
+        c.set("user", this.user);
+        c.set("pass", this.pass);
+
+        // Set the directory parameters
+        c.set("root", this.root);
+
+        // Return the result
+        return true;
+    }
+
 
 
 
@@ -358,12 +375,6 @@ public class VolumeAdapterFTP extends VolumeAdapter {
 
         // Parse and set the root directory
         this.root = new File(rootPath);
-        return true;
-    }
-
-    @Override
-    public boolean saveToConfig(ConfigurationSection c) {
-        c.set("root", this.root.getAbsolutePath());
         return true;
     }
 }
