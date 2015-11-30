@@ -3,8 +3,9 @@ machine:
     version: oraclejdk8
 general:
   artifacts:
-    - "target/BlackBox-Backup-*-SNAPSHOT.jar"
-    - "target/BlackBox-Backup-*-SNAPSHOT-jar-with-dependencies.jar"
+#    - "target/BlackBox-Backup-*-SNAPSHOT.jar"
+#    - "target/BlackBox-Backup-*-SNAPSHOT-jar-with-dependencies.jar"
+    - "target"
 test:
   override:
     - mvn clean install -B
