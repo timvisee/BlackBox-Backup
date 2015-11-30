@@ -1,8 +1,8 @@
-package com.timvisee.blackbox.task;
+package com.timvisee.blackboxold.task;
 
 import java.io.File;
 
-import com.timvisee.blackbox.BlackBox;
+import com.timvisee.blackboxold.BlackBox;
 
 public class TaskManager {
 

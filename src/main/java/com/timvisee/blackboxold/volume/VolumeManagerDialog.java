@@ -25,7 +25,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.timvisee.blackbox.BlackBox;
+import com.timvisee.blackboxold.BlackBox;
 import com.timvisee.blackboxold.Core;
 import com.timvisee.blackboxold.components.BBDialog;
 import com.timvisee.blackboxold.util.ListUtils;

@@ -2,8 +2,8 @@ package com.timvisee.blackboxold.volume;
 
 import java.io.File;
 
-import com.timvisee.blackbox.volume.Volume;
-import com.timvisee.blackbox.volume.filesystem.VolumeFile;
+import com.timvisee.blackboxold.volume.Volume;
+import com.timvisee.blackboxold.volume.filesystem.VolumeFile;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 
 public class SystemVolume extends Volume {

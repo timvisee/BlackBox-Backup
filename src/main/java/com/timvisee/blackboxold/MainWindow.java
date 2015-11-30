@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 
-import com.timvisee.blackbox.BlackBox;
+import com.timvisee.blackboxold.BlackBox;
 import com.timvisee.blackboxold.components.BBFrame;
 import com.timvisee.blackboxold.volume.VolumeManagerDialog;
 import com.timvisee.blackboxold.volume.VolumeTypeDialog;

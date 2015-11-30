@@ -1,6 +1,6 @@
 package com.timvisee.blackboxold.volume;
 
-import com.timvisee.blackbox.volume.Volume;
+import com.timvisee.blackboxold.volume.Volume;
 
 import java.util.ArrayList;
 import java.util.List;

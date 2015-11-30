@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.timvisee.blackbox.BlackBox;
-import com.timvisee.blackbox.volume.Volume;
+import com.timvisee.blackboxold.BlackBox;
+import com.timvisee.blackboxold.volume.Volume;
 import com.timvisee.blackboxold.util.ListUtils;
 import com.timvisee.yamlwrapper.configuration.ConfigurationSection;
 import com.timvisee.yamlwrapper.configuration.FileConfiguration;

@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.timvisee.blackbox.BlackBox;
+import com.timvisee.blackboxold.BlackBox;
 import com.timvisee.blackboxold.components.BBDialog;
 import com.timvisee.blackboxold.components.ImagePanel;
 

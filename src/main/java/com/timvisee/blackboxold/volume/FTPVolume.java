@@ -1,7 +1,7 @@
 package com.timvisee.blackboxold.volume;
 
-import com.timvisee.blackbox.volume.Volume;
-import com.timvisee.blackbox.volume.filesystem.VolumeFile;
+import com.timvisee.blackboxold.volume.Volume;
+import com.timvisee.blackboxold.volume.filesystem.VolumeFile;
 import it.sauronsoftware.ftp4j.FTPClient;
 import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPIllegalReplyException;

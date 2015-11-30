@@ -1,4 +1,4 @@
-package com.timvisee.blackbox.components;
+package com.timvisee.blackboxold.components;
 
 import java.awt.Graphics;
 import java.awt.Image;

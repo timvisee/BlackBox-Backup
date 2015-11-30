@@ -16,7 +16,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import com.timvisee.blackbox.BlackBox;
+import com.timvisee.blackboxold.BlackBox;
 import com.timvisee.blackboxold.util.WindowUtils;
 import com.timvisee.blackboxold.volume.VolumeManager;
 
