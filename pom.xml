@@ -34,7 +34,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javaVersion>1.8</javaVersion>
-
     </properties>
 
     <build>
@@ -45,7 +44,7 @@
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
                 <includes>
-                    <include>*.yml</include>
+                    <include>**</include>
                 </includes>
             </resource>
         </resources>
@@ -57,9 +56,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>${javaVersion}</target>
-                    <excludes>
-                        <exclude>**/src/main/java/com/timvisee/blackboxold/**.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -88,13 +84,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.1</version>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>net.ricecode:similarity</include>
-                        </includes>
-                    </artifactSet>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -107,7 +96,21 @@
         </plugins>
     </build>
 
+    <repositories>
+        <!-- sauronsoftware repo: ftp4j -->
+        <repository>
+            <id>sauronsoftware-github</id>
+            <url>https://raw.githubusercontent.com/Takuto88/sauronsoftware-maven/master/releases/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <!-- ftp4j -->
+        <dependency>
+            <groupId>it.sauronsoftware</groupId>
+            <artifactId>ftp4j</artifactId>
+            <version>1.7.2</version>
+        </dependency>
 
         <!-- Commons IO -->
         <dependency>
