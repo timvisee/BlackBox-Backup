@@ -57,6 +57,9 @@
                 <configuration>
                     <source>1.8</source>
                     <target>${javaVersion}</target>
+                    <excludes>
+                        <exclude>**/src/main/java/com/timvisee/blackboxold/**.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
