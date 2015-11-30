@@ -8,7 +8,7 @@
 
     <version>0.1-SNAPSHOT</version>
 
-    <name>BlackBox Backup</name>
+    <name>BlackBox-Backup</name>
     <description>BlackBox Backup, the right way. Backing up data as easy as loosing it.</description>
     <inceptionYear>2015</inceptionYear>
     <url>https://github.com/timvisee/BlackBox-Backup</url>
